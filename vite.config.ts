@@ -15,6 +15,8 @@ import Inspector from 'vite-plugin-vue-inspector'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import VueMacros from 'unplugin-vue-macros/vite'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 export default defineConfig({
   resolve: {
@@ -86,6 +88,19 @@ export default defineConfig({
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
+      types: [
+        {
+          from: 'vue-router',
+          names: ['RouterLink', 'RouterView'],
+        },
+      ],
+      resolvers: [
+        IconsResolver(),
+        (name: string) => {
+          if (name.match(/^Daisy[A-Z]/))
+            return { name, from: 'daisy-ui-kit' }
+        },
+      ],
     }),
 
     // https://github.com/antfu/vite-plugin-vue-markdown
@@ -156,6 +171,9 @@ export default defineConfig({
     Inspector({
       toggleButtonVisibility: 'never',
     }),
+
+    // https://github.com/antfu/unplugin-icons#migrate-from-vite-plugin-icons
+    Icons(),
   ],
 
   // https://github.com/vitest-dev/vitest
