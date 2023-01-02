@@ -1,56 +1,64 @@
 <script setup lang="ts">
-defineOptions({
-  name: 'IndexPage',
-})
-const user = useUserStore()
-const name = $ref(user.savedName)
-
-const router = useRouter()
-const go = () => {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
-}
-
-const { t } = useI18n()
+const colorMode = useColorMode()
+const themes = useThemes()
+const authStore = useAuthStore()
 </script>
 
 <template>
-  <div>
-    <div text-4xl>
-      <div i-carbon-campsite inline-block />
-    </div>
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
-        Vitesse
-      </a>
-    </p>
-    <p>
-      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
-    </p>
+  <div class="transition-colors duration-300">
+    <DaisyHero class="h-[32rem] bg-base-300">
+      <DaisyHeroContent>
+        <DaisyFlex col center class="max-w-xl text-center gap-5">
+          <DaisyText is="h1" size="5xl" bold>
+            Feathers-Pinia + Vite
+          </DaisyText>
+          <DaisyText xl>
+            Welcome to the Perfect Single Page App Stack.
+          </DaisyText>
+          <div>
+            <RouterLink v-if="authStore.user" to="/app">
+              <DaisyButton primary>
+                Open App
+              </DaisyButton>
+            </RouterLink>
+            <RouterLink v-else to="/login">
+              <DaisyButton primary>
+                Get Started
+              </DaisyButton>
+            </RouterLink>
+          </div>
+        </DaisyFlex>
+      </DaisyHeroContent>
+    </DaisyHero>
 
-    <div py-4 />
+    <DaisyFlex v-if="!authStore.user" items-center col class="py-8 gap-4">
+      <DaisyText>Try the login redirect while not logged in</DaisyText>
+      <RouterLink to="/app/me">
+        <DaisyButton>Open the Profile Page</DaisyButton>
+      </RouterLink>
+    </DaisyFlex>
 
-    <TheInput
-      v-model="name"
-      placeholder="What's your name?"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
+    <DaisyCard class="bg-base-200 mx-auto max-w-md text-center my-12">
+      <DaisyCardBody class="gap-4">
+        <DaisyText size="3xl">
+          Set The Mood
+        </DaisyText>
+        <DaisyText size="lg">
+          With
+          <DaisyLink primary href="https://daisyui.com" target="blank" class="font-bold">
+            DaisyUI
+          </DaisyLink>
+          under the hood, you can <br>pick your favorite theme.
+        </DaisyText>
 
-    <div>
-      <button
-        btn m-3 text-sm
-        :disabled="!name"
-        @click="go"
-      >
-        {{ t('button.go') }}
-      </button>
-    </div>
+        <DaisyFormControl class="mx-auto w-60">
+          <DaisySelect
+            v-model="colorMode.preference"
+            :options="themes"
+            class="select select-bordered w-full max-w-xs"
+          />
+        </DaisyFormControl>
+      </DaisyCardBody>
+    </DaisyCard>
   </div>
 </template>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>
