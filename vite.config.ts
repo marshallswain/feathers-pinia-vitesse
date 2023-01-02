@@ -53,6 +53,23 @@ export default defineConfig({
         'vue/macros',
         '@vueuse/head',
         '@vueuse/core',
+        {
+          'feathers-pinia': [
+            'useFeathersModel',
+            'useBaseModel',
+            'useInstanceDefaults',
+            'useFeathersInstance',
+            'associateGet',
+            'associateFind',
+            'useService',
+            'useAuth',
+            'useFind',
+            'useGet',
+            'useClone',
+            'useClones',
+            'feathersPiniaHooks',
+          ],
+        },
       ],
       dts: 'src/auto-imports.d.ts',
       dirs: [
