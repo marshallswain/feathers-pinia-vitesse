@@ -18,6 +18,7 @@ declare global {
   const computedEager: typeof import('@vueuse/core')['computedEager']
   const computedInject: typeof import('@vueuse/core')['computedInject']
   const computedWithControl: typeof import('@vueuse/core')['computedWithControl']
+  const connectModel: typeof import('./composables/use-feathers-models')['connectModel']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
   const createApp: typeof import('vue')['createApp']
@@ -38,6 +39,7 @@ declare global {
   const feathersPiniaHooks: typeof import('feathers-pinia')['feathersPiniaHooks']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getModelNamespace: typeof import('./composables/use-feathers-models')['getModelNamespace']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -61,6 +63,7 @@ declare global {
   const onErrorCaptured: typeof import('vue')['onErrorCaptured']
   const onKeyStroke: typeof import('@vueuse/core')['onKeyStroke']
   const onLongPress: typeof import('@vueuse/core')['onLongPress']
+  const onModelReady: typeof import('./composables/use-feathers-models')['onModelReady']
   const onMounted: typeof import('vue')['onMounted']
   const onRenderTracked: typeof import('vue')['onRenderTracked']
   const onRenderTriggered: typeof import('vue')['onRenderTriggered']
@@ -124,6 +127,7 @@ declare global {
   const useAsyncState: typeof import('@vueuse/core')['useAsyncState']
   const useAttrs: typeof import('vue')['useAttrs']
   const useAuth: typeof import('feathers-pinia')['useAuth']
+  const useAuthStore: typeof import('./stores/auth')['useAuthStore']
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBaseModel: typeof import('feathers-pinia')['useBaseModel']
   const useBattery: typeof import('@vueuse/core')['useBattery']
@@ -170,6 +174,8 @@ declare global {
   const useFeathers: typeof import('./composables/use-feathers')['useFeathers']
   const useFeathersInstance: typeof import('feathers-pinia')['useFeathersInstance']
   const useFeathersModel: typeof import('feathers-pinia')['useFeathersModel']
+  const useFeathersPiniaConfig: typeof import('./models/global-config')['useFeathersPiniaConfig']
+  const useFeathersService: typeof import('./composables/use-feathers')['useFeathersService']
   const useFetch: typeof import('@vueuse/core')['useFetch']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
@@ -200,6 +206,7 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
+  const useModel: typeof import('./composables/use-feathers-models')['useModel']
   const useMounted: typeof import('@vueuse/core')['useMounted']
   const useMouse: typeof import('@vueuse/core')['useMouse']
   const useMouseInElement: typeof import('@vueuse/core')['useMouseInElement']
@@ -244,6 +251,9 @@ declare global {
   const useStyleTag: typeof import('@vueuse/core')['useStyleTag']
   const useSupported: typeof import('@vueuse/core')['useSupported']
   const useSwipe: typeof import('@vueuse/core')['useSwipe']
+  const useTaskModel: typeof import('./models/task')['useTaskModel']
+  const useTaskStore: typeof import('./stores/service.tasks')['useTaskStore']
+  const useTasksConfig: typeof import('./models/task')['useTasksConfig']
   const useTemplateRefsList: typeof import('@vueuse/core')['useTemplateRefsList']
   const useTextDirection: typeof import('@vueuse/core')['useTextDirection']
   const useTextSelection: typeof import('@vueuse/core')['useTextSelection']
@@ -264,7 +274,9 @@ declare global {
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
-  const useUserStore: typeof import('./stores/user')['useUserStore']
+  const useUserModel: typeof import('./models/user')['useUserModel']
+  const useUserStore: typeof import('./stores/service.users')['useUserStore']
+  const useUsersConfig: typeof import('./models/user')['useUsersConfig']
   const useVModel: typeof import('@vueuse/core')['useVModel']
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
@@ -313,6 +325,7 @@ declare module 'vue' {
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
     readonly computedInject: UnwrapRef<typeof import('@vueuse/core')['computedInject']>
     readonly computedWithControl: UnwrapRef<typeof import('@vueuse/core')['computedWithControl']>
+    readonly connectModel: UnwrapRef<typeof import('./composables/use-feathers-models')['connectModel']>
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
@@ -333,6 +346,7 @@ declare module 'vue' {
     readonly feathersPiniaHooks: UnwrapRef<typeof import('feathers-pinia')['feathersPiniaHooks']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getModelNamespace: UnwrapRef<typeof import('./composables/use-feathers-models')['getModelNamespace']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -356,6 +370,7 @@ declare module 'vue' {
     readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
     readonly onKeyStroke: UnwrapRef<typeof import('@vueuse/core')['onKeyStroke']>
     readonly onLongPress: UnwrapRef<typeof import('@vueuse/core')['onLongPress']>
+    readonly onModelReady: UnwrapRef<typeof import('./composables/use-feathers-models')['onModelReady']>
     readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
     readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
     readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
@@ -419,6 +434,7 @@ declare module 'vue' {
     readonly useAsyncState: UnwrapRef<typeof import('@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useAuth: UnwrapRef<typeof import('feathers-pinia')['useAuth']>
+    readonly useAuthStore: UnwrapRef<typeof import('./stores/auth')['useAuthStore']>
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBaseModel: UnwrapRef<typeof import('feathers-pinia')['useBaseModel']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
@@ -465,6 +481,8 @@ declare module 'vue' {
     readonly useFeathers: UnwrapRef<typeof import('./composables/use-feathers')['useFeathers']>
     readonly useFeathersInstance: UnwrapRef<typeof import('feathers-pinia')['useFeathersInstance']>
     readonly useFeathersModel: UnwrapRef<typeof import('feathers-pinia')['useFeathersModel']>
+    readonly useFeathersPiniaConfig: UnwrapRef<typeof import('./models/global-config')['useFeathersPiniaConfig']>
+    readonly useFeathersService: UnwrapRef<typeof import('./composables/use-feathers')['useFeathersService']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
@@ -495,6 +513,7 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
+    readonly useModel: UnwrapRef<typeof import('./composables/use-feathers-models')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
     readonly useMouseInElement: UnwrapRef<typeof import('@vueuse/core')['useMouseInElement']>
@@ -539,6 +558,9 @@ declare module 'vue' {
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
+    readonly useTaskModel: UnwrapRef<typeof import('./models/task')['useTaskModel']>
+    readonly useTaskStore: UnwrapRef<typeof import('./stores/service.tasks')['useTaskStore']>
+    readonly useTasksConfig: UnwrapRef<typeof import('./models/task')['useTasksConfig']>
     readonly useTemplateRefsList: UnwrapRef<typeof import('@vueuse/core')['useTemplateRefsList']>
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
     readonly useTextSelection: UnwrapRef<typeof import('@vueuse/core')['useTextSelection']>
@@ -559,7 +581,9 @@ declare module 'vue' {
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
-    readonly useUserStore: UnwrapRef<typeof import('./stores/user')['useUserStore']>
+    readonly useUserModel: UnwrapRef<typeof import('./models/user')['useUserModel']>
+    readonly useUserStore: UnwrapRef<typeof import('./stores/service.users')['useUserStore']>
+    readonly useUsersConfig: UnwrapRef<typeof import('./models/user')['useUsersConfig']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
