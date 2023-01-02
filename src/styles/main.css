@@ -1,5 +1,9 @@
 @import './markdown.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body,
 #app {
@@ -8,10 +12,20 @@ body,
   padding: 0;
 }
 
-html.dark {
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+/* html.dark {
   background: #121212;
   color-scheme: dark;
-}
+} */
 
 #nprogress {
   pointer-events: none;
@@ -27,3 +41,5 @@ html.dark {
   width: 100%;
   height: 2px;
 }
+
+
