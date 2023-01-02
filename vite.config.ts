@@ -13,7 +13,6 @@ import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Inspect from 'vite-plugin-inspect'
 import Inspector from 'vite-plugin-vue-inspector'
 import LinkAttributes from 'markdown-it-link-attributes'
-import Unocss from 'unocss/vite'
 import Shiki from 'markdown-it-shiki'
 import VueMacros from 'unplugin-vue-macros/vite'
 
@@ -88,10 +87,6 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
     }),
-
-    // https://github.com/antfu/unocss
-    // see unocss.config.ts for config
-    Unocss(),
 
     // https://github.com/antfu/vite-plugin-vue-markdown
     // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
